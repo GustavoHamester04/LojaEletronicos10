@@ -21,19 +21,21 @@ class VendaController extends Controller
     {
         $produtos = Produto::all();
         $enderecos = Auth::user()->enderecos;
-        return view('vendas.create', compact('produtos', 'enderecos'));
+        $clientes = Cliente::all(); // Adicionado para buscar todos os clientes
+        return view('vendas.create', compact('produtos', 'enderecos', 'clientes'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
+            'cliente_id' => 'required|exists:clientes,id', // Validação para cliente_id
             'endereco_id' => 'required|exists:enderecos,id',
             'produtos' => 'required|array',
             'quantidades' => 'required|array',
         ]);
 
         $venda = Venda::create([
-            'cliente_id' => Auth::id(),
+            'cliente_id' => $data['cliente_id'], // Utilizando o cliente selecionado
             'endereco_id' => $data['endereco_id'],
             'valor_total' => 0,
         ]);
@@ -68,12 +70,14 @@ class VendaController extends Controller
     {
         $produtos = Produto::all();
         $enderecos = Auth::user()->enderecos;
-        return view('vendas.edit', compact('venda', 'produtos', 'enderecos'));
+        $clientes = Cliente::all(); // Adicionado para edição
+        return view('vendas.edit', compact('venda', 'produtos', 'enderecos', 'clientes'));
     }
 
     public function update(Request $request, Venda $venda)
     {
         $data = $request->validate([
+            'cliente_id' => 'required|exists:clientes,id', // Validação para cliente_id
             'endereco_id' => 'required|exists:enderecos,id',
             'produtos' => 'required|array',
             'quantidades' => 'required|array',
@@ -96,6 +100,7 @@ class VendaController extends Controller
         }
 
         $venda->update([
+            'cliente_id' => $data['cliente_id'], // Atualizando o cliente
             'endereco_id' => $data['endereco_id'],
             'valor_total' => $total,
         ]);
