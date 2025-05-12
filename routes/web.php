@@ -21,12 +21,13 @@ Route::resource('enderecos', EnderecoController::class);
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::resource('vendas', VendaController::class);
+
 Route::middleware(['auth'])->group(function () {
-Route::resource('categorias', CategoriaController::class);
+    Route::resource('categorias', CategoriaController::class);
+    Route::resource('vendas', VendaController::class);
 });
 
-Route::resource('produtos', ProdutoController::class);
+
 Route::resource('fotos', FotoController::class);
 Route::resource('clientes', ClienteController::class);
 
@@ -37,4 +38,5 @@ Route::middleware('auth')->group(function () {
     Route::post('carrinho/limpar', [CarrinhoController::class, 'limpar'])->name('carrinho.limpar');
     Route::post('carrinho/finalizar', [CarrinhoController::class, 'finalizar'])->name('carrinho.finalizar');
     Route::post('/carrinho/finalizar', [CarrinhoController::class, 'finalizar'])->name('carrinho.finalizar');
+    Route::resource('produtos', ProdutoController::class);
 });

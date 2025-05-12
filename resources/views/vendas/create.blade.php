@@ -6,6 +6,17 @@
 <form action="{{ route('vendas.store') }}" method="POST">
   @csrf
 
+  <!-- Campo de seleção de cliente -->
+  <div class="mb-3">
+    <label for="cliente_id" class="form-label">Cliente</label>
+    <select name="cliente_id" id="cliente_id" class="form-select" required>
+      <option value="" disabled selected>Selecione um cliente</option>
+      @foreach($clientes as $cliente)
+        <option value="{{ $cliente->id }}">{{ $cliente->nome }}</option>
+      @endforeach
+    </select>
+  </div>
+
   <div class="mb-3">
     <label class="form-label">Endereço</label>
     <select name="endereco_id" class="form-select">
