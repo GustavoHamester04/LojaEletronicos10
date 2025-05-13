@@ -18,7 +18,7 @@
   @foreach($vendas as $v)
     <tr>
       <td>{{ $v->id }}</td>
-      <td>{{ $v->cliente->name }}</td>
+      <td>{{ $v->cliente->nome }}</td>
       <td>{{ $v->endereco->descricao }}</td>
       <td>R$ {{ number_format($v->valor_total,2,',','.') }}</td>
       <td>

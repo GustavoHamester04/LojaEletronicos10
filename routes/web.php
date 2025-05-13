@@ -12,8 +12,8 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CarrinhoController;
 
 Route::get('/', function () {
-    return view('home');
-})->name('home');
+    return redirect (route("home"));
+});
 
 Route::resource('cidades', CidadeController::class);
 Route::resource('enderecos', EnderecoController::class);
