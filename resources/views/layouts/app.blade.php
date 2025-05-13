@@ -3,13 +3,13 @@
 
 <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X5VVT3D5YF"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6WY3CHB2H"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'G-X5VVT3D5YF');
+        gtag('config', 'G-F6WY3CHB2H');
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
